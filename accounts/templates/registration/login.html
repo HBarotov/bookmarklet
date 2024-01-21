@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+    <h1>Login</h1>
+    <p>Please, use the following form to login:</p>
+    <div class="login-form">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="hidden" name="next" value="{{ next }}" />
+            <p><input type="submit" value="Login"></p>
+        </form>
+        <p>
+            New here? <a href="{% url 'register' %}">Register here.</a>
+        </p>
+        <p>
+            <a href="{% url 'password_reset' %}">
+                Forgot your password?
+            </a>
+        </p>
+    </div>
+    <div class="social">
+        <ul>
+            <li class="google">
+                <a href="{% url 'social:begin' 'google-oauth2' %}">
+                    Sign in with Google
+                </a>
+            </li>
+        </ul>
+    </div>
+{% endblock content %}
